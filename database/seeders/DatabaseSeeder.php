@@ -5,6 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Hospital;
+use App\Models\Doctor;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,12 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
 
         DB::table('users')->insert([
             [
@@ -64,5 +62,44 @@ class DatabaseSeeder extends Seeder
                 'body' => 'Post Body For 4'
             ]
         ]);
+
+        DB::table('hospitals')->insert([
+            [
+                'name' => 'Hospital 1',
+                'location' => 'Abo Dhabi'
+            ],
+            [
+                'name' => 'Hospital 2',
+                'location' => 'Mecca'
+            ]
+        ]);
+        DB::table('doctors')->insert([
+            [
+                'name' => 'Doctor 1'
+            ],
+            [
+                'name' => 'Doctor 2'
+            ],
+            [
+                'name' => 'Doctor 3'
+            ],
+            [
+                'name' => 'Doctor 4'
+            ]
+        ]);
+
+
+        $doctor1 = Doctor::where('id', 1)->first();
+        $doctor2 = Doctor::where('id', 2)->first();
+        $doctor3 = Doctor::where('id', 3)->first();
+        $doctor4 = Doctor::where('id', 4)->first();
+
+        $hospital1 = Hospital::where('id', 1)->first();
+        $hospital2 = Hospital::where('id', 2)->first();
+
+        $doctor1->hospitals()->attach($hospital1->id);
+        $doctor2->hospitals()->attach($hospital1->id);
+        $doctor3->hospitals()->attach($hospital2->id);
+        $doctor4->hospitals()->attach($hospital2->id);
     }
 }

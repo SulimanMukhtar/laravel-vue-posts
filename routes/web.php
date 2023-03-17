@@ -40,6 +40,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/editPost/{id}', [\App\Http\Controllers\PostsController::class, 'edit'])->name('post.edit');
     Route::patch('/updatePost/{id}', [\App\Http\Controllers\PostsController::class, 'update'])->name('post.update');
     Route::delete('/delPost/{id}', [\App\Http\Controllers\PostsController::class, 'destroy'])->name('post.destroy');
+
+    Route::get('/editDoctor/{id}', [\App\Http\Controllers\DoctorsController::class, 'edit'])->name('doctor.edit');
+    Route::patch('/updateDoctor/{id}', [\App\Http\Controllers\DoctorsController::class, 'update'])->name('doctor.update');
+    Route::delete('/delDoctor/{id}', [\App\Http\Controllers\DoctorsController::class, 'destroy'])->name('doctor.destroy');
+    
+    Route::get('/editHospital/{id}', [\App\Http\Controllers\HospitalsController::class, 'edit'])->name('hospital.edit');
+    Route::patch('/updateHospital/{id}', [\App\Http\Controllers\HospitalsController::class, 'update'])->name('hospital.update');
+    Route::delete('/delHospital/{id}', [\App\Http\Controllers\HospitalsController::class, 'destroy'])->name('hospital.destroy');
 });
 
 require __DIR__.'/auth.php';

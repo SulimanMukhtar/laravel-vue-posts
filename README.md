@@ -5,6 +5,7 @@ applying Laravel Policies.
 
 theres 3 User/Role types .
 
+all users are provided from the Seeder
 
 ### Super Admin  (id === 0) 
 ```bash
