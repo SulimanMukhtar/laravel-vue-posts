@@ -13,6 +13,7 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
+        $this->authorize('view' , $post);
         return Inertia::render('Profile/EditPost', compact('post'));
     }
 

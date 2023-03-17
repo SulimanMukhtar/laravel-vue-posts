@@ -22,7 +22,10 @@ class PostPolicy
      */
     public function view(User $user, Post $post): bool
     {
-        //
+        if($user->role_id===2){
+            return false;
+        }
+        return true;
     }
 
     /**
