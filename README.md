@@ -31,9 +31,11 @@ email : user@user.com
 pass : password
 ```
 
-### the User can't update or delete the posts .
 
-### the Admin can only Update posts .
+
+### the User can't update or delete Anything ... only view the records .
+
+### the Admin can only Update all except the Hospitals .
 
 ### The Super Admin can do all .
 
