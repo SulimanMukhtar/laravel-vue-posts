@@ -20,7 +20,7 @@ class PostPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Post $post): bool
+    public function view(User $user): bool
     {
         if($user->role_id===2){
             return false;
@@ -33,7 +33,10 @@ class PostPolicy
      */
     public function create(User $user): bool
     {
-        //
+        if($user->role_id===2){
+            return false;
+        }
+        return true;
     }
 
     /**

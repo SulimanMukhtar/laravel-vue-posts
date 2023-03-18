@@ -3,17 +3,13 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, useForm, usePage } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 
-
-const props = defineProps({
-    doctor: Object
-})
-const doctor = usePage().props.doctor;
 
 const form = useForm({
-    name: doctor.name
+    name: ''
 });
+
 
 </script>
 
@@ -24,10 +20,10 @@ const form = useForm({
 
         <section>
             <header>
-                <h2 class="text-lg font-medium text-gray-900">Update a Doctor</h2>
+                <h2 class="text-lg font-medium text-gray-900">Add a Doctor</h2>
             </header>
 
-                <form @submit.prevent="form.patch(route('doctors.update', { id: props.doctor.id }))" class="mt-6 space-y-6">
+            <form @submit.prevent="form.post(route('doctors.store'))" class="mt-6 space-y-6">
                 <div>
                     <InputLabel for="name" value="name" />
 
@@ -36,7 +32,7 @@ const form = useForm({
 
 
                 <div class="flex items-center gap-4">
-                    <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
+                    <PrimaryButton :disabled="form.processing">Add</PrimaryButton>
 
                     <Transition enter-from-class="opacity-0" leave-to-class="opacity-0" class="transition ease-in-out">
                         <p v-if="form.recentlySuccessful" class="text-sm text-gray-600">Saved.</p>

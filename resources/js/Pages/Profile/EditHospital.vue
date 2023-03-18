@@ -28,7 +28,7 @@ const form = useForm({
                 <h2 class="text-lg font-medium text-gray-900">Update a Hospital</h2>
             </header>
 
-            <form @submit.prevent="form.patch(route('hospital.update', { id: props.hospital.id }))" class="mt-6 space-y-6">
+                <form @submit.prevent="form.patch(route('hospitals.update', { id: props.hospital.id }))" class="mt-6 space-y-6">
                 <div>
                     <InputLabel for="name" value="name" />
 

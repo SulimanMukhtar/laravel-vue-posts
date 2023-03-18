@@ -19,12 +19,12 @@ class HospitalPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Hospital $hospital): bool
+    public function view(User $user): bool
     {
-        if($user->role_id===2){
-            return false;
+        if($user->role_id===0){
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -32,7 +32,10 @@ class HospitalPolicy
      */
     public function create(User $user): bool
     {
-        //
+        if($user->role_id===0){
+            return true;
+        }
+        return false;
     }
 
     /**
