@@ -11,9 +11,8 @@ use Inertia\Inertia;
 
 class PostsController extends Controller
 {
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $post = Post::findOrFail($id);
         $this->authorize('view' , $post);
         return Inertia::render('Profile/EditPost', compact('post'));
     }
@@ -35,18 +34,16 @@ class PostsController extends Controller
         return Redirect::route('dashboard');
     }
 
-    public function update(PostUpdateRequest $request , $id)
+    public function update(PostUpdateRequest $request , Post $post)
     {
-        $post = Post::findOrFail($id);
         $this->authorize('update' , $post);
         $post->update($request->validated());
         return Redirect::route('dashboard');
     }
 
 
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request,Post $post)
     {
-        $post = Post::findOrFail($id);
         $this->authorize('delete' , $post);
         $post->delete();
         return Redirect::route('dashboard');

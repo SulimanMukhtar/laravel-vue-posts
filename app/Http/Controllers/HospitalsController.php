@@ -14,9 +14,8 @@ use Inertia\Inertia;
 
 class HospitalsController extends Controller
 {
-    public function edit($id)
+    public function edit(Hospital $hospital)
     {
-        $hospital = Hospital::findOrFail($id);
         $this->authorize('view' , $hospital);
         return Inertia::render('Profile/EditHospital', compact('hospital'));
     }
@@ -37,18 +36,16 @@ class HospitalsController extends Controller
         return Redirect::route('dashboard');
     }
 
-    public function update(HospitalUpdateRequest $request , $id)
+    public function update(HospitalUpdateRequest $request , Hospital $hospital)
     {
-        $hospital = Hospital::findOrFail($id);
         $this->authorize('update' , $hospital);
         $hospital->update($request->validated());
         return Redirect::route('dashboard');
     }
 
 
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request,Hospital $hospital)
     {
-        $hospital = Hospital::findOrFail($id);
         $this->authorize('delete' , $hospital);
         $hospital->delete();
         return Redirect::route('dashboard');
